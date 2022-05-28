@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
+import React from 'react';
+import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
-import Auth from '../utils/auth';
 
 
 const LoggedIn = () => {
@@ -18,9 +17,9 @@ const LoggedIn = () => {
             <p>
             Placeholder page #2.
             </p>
-            <a>
+            <span>
             - YOUR PROFILE -
-            </a>
+            </span>
         </header>
         </div>
     </>

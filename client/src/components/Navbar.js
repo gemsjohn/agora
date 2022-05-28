@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
@@ -10,29 +12,41 @@ const AppNavbar = () => {
   // set modal display state
   const [showModal, setShowModal] = useState(false);
 
+  const [isShown, setIsShown] = useState(false);
+
+  const { data: userData } = useQuery(GET_ME);
+  const user = userData?.me || {};
+  console.log(user);
+
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            Placeholder Logo
+          <span className="Nav-style">Placeholder Logo</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
-                Placeholder Button
+              <span className="Nav-style">Placeholder Button</span>
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/profile'>
-                    Profile Page
+                    <span className="Nav-style">Profile Page</span>
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link 
+                    onClick={Auth.logout} 
+                    onMouseEnter={() => setIsShown(true)} 
+                    onMouseLeave={() => setIsShown(false)}
+                  >
+                    {isShown ? <span className="Nav-user-logout">Logout</span> : <span className="Nav-user-style">{user.username}</span>}
+                  </Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}><span className="Nav-style">Login/Sign Up</span></Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>

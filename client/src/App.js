@@ -31,7 +31,9 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
-          <Navbar />
+          <div className="App-navbar">
+            <Navbar />
+          </div>
           <Switch>
             <Route exact path='/' component={Placeholder} />
             <Route exact path='/profile' component={LoggedIn} />
