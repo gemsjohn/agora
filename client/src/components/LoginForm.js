@@ -49,8 +49,8 @@ const LoginForm = () => {
         {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert> */}
-        <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+        <Form.Group style={{ width: 500, textAlign: 'left' }}>
+          <Form.Label htmlFor='email'>Email <span style={{color: 'red' }}>*</span></Form.Label>
           <Form.Control
             type='text'
             placeholder='Your email'
@@ -62,8 +62,8 @@ const LoginForm = () => {
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+        <Form.Group style={{ width: 500, textAlign: 'left' }}>
+          <Form.Label htmlFor='password'>Password <span style={{color: 'red' }}>*</span></Form.Label>
           <Form.Control
             type='password'
             placeholder='Your password'
@@ -77,7 +77,8 @@ const LoginForm = () => {
         <Button
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          variant='success'
+          style={{ width: 500 }}>
           Submit
         </Button>
       </Form>

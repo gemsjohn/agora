@@ -4,6 +4,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import Placeholder from './pages/placeholder';
 import LoggedIn from './pages/loggedIn';
+import LoginSignup from './pages/loginpage';
 import Navbar from './components/Navbar';
 
 const httpLink = createHttpLink({
@@ -37,6 +38,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Placeholder} />
             <Route exact path='/profile' component={LoggedIn} />
+            <Route exact path='/loginsignup' component={LoginSignup} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </>
