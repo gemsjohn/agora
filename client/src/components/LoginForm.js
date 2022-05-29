@@ -49,7 +49,7 @@ const LoginForm = () => {
         {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert> */}
-        <Form.Group style={{ width: 500, textAlign: 'left' }}>
+        <Form.Group style={{ width: '48vw', textAlign: 'left' }}>
           <Form.Label htmlFor='email'>Email <span style={{color: 'red' }}>*</span></Form.Label>
           <Form.Control
             type='text'
@@ -62,7 +62,7 @@ const LoginForm = () => {
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group style={{ width: 500, textAlign: 'left' }}>
+        <Form.Group style={{ width: '48vw', textAlign: 'left' }}>
           <Form.Label htmlFor='password'>Password <span style={{color: 'red' }}>*</span></Form.Label>
           <Form.Control
             type='password'
@@ -78,7 +78,7 @@ const LoginForm = () => {
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
           variant='success'
-          style={{ width: 500 }}>
+          style={{ width: '48vw' }}>
           Submit
         </Button>
       </Form>

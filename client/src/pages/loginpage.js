@@ -6,7 +6,7 @@ import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
 
 
-const countReducer = (state, action) => {
+const formHandler = (state, action) => {
   console.log('state:', state)
   console.log('action:', action)
 
@@ -22,7 +22,7 @@ const countReducer = (state, action) => {
 
 const LoginSignup = () => {
   const initialState = { form: <LoginForm />  }
-  const [state, dispatch] = useReducer(countReducer, initialState)
+  const [state, dispatch] = useReducer(formHandler, initialState)
 
   const [isShownLogin, setIsShownLogin] = useState(false);
   const [isShownSignup, setIsShownSignup] = useState(false);
@@ -35,11 +35,7 @@ const LoginSignup = () => {
   }, [state.form])
 
   const commonButtonStyles = {
-    backgroundColor: '#283845', borderRadius: 10, margin: 10, height: 50, width: 240, color: 'white', fontSize: 15, paddingTop: 15
-  }
-
-  const hoverButtonStyles = {
-    backgroundColor: 'white', borderRadius: 10, margin: 10, height: 50, width: 240, color: 'white', fontSize: 15, paddingTop: 15
+    backgroundColor: '#283845', borderRadius: 10, margin: 10, height: 50, width: '24vw', color: 'white', fontSize: 15, paddingTop: 15
   }
 
   return (
