@@ -59,3 +59,10 @@
   .App-link {
     color: #61dafb;
   }
+
+  .Filter-org {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+  }

@@ -35,7 +35,14 @@ const LoginSignup = () => {
   }, [state.form])
 
   const commonButtonStyles = {
-    backgroundColor: '#283845', borderRadius: 10, margin: 10, height: 50, width: '24vw', color: 'white', fontSize: 15, paddingTop: 15
+    backgroundColor: '#283845', 
+    borderRadius: 10, 
+    margin: 10, 
+    height: '5vh', 
+    width: '24vw', 
+    color: 'white', 
+    fontSize: 15, 
+    paddingTop: '1.5vh'
   }
 
   return (

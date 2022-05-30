@@ -10,7 +10,8 @@ import logo from '../assets/logo_lg.png';
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
-  const [isShown, setIsShown] = useState(false);
+  const [isShownSearch, setIsShownSearch] = useState(false);
+  const [isShownLogin, setIsShownLogin] = useState(false);
 
   const test = () => {
     return (
@@ -35,7 +36,13 @@ const AppNavbar = () => {
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' style={{ marginRight: '2%' }}>
               <Nav.Link as={Link} to='/'>
-                <span className="Nav-style">Search</span>
+                <span 
+                  className="Nav-style"
+                  onMouseEnter={() => setIsShownSearch(true)} 
+                  onMouseLeave={() => setIsShownSearch(false)}
+                >
+                  {isShownSearch ? <span style={{ color: '#F2D492'}} >Search</span> : <span>Search</span>}
+                </span>
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
@@ -51,7 +58,15 @@ const AppNavbar = () => {
                   </DropdownButton>
                 </>
               ) : (
-                <Nav.Link as={Link} to='/loginsignup'><span className="Nav-style">Log In</span></Nav.Link>
+                <Nav.Link as={Link} to='/loginsignup'>
+                  <span 
+                    className="Nav-style"
+                    onMouseEnter={() => setIsShownLogin(true)} 
+                    onMouseLeave={() => setIsShownLogin(false)}
+                  >
+                    {isShownLogin ? <span style={{ color: '#F2D492'}} >Login</span> : <span>Login</span>}
+                  </span>
+                </Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
