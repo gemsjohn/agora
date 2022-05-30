@@ -1,6 +1,5 @@
 import React, { useState, useReducer } from 'react';
-import { Form, Button, InputGroup, FormControl, Container, DropdownButton, Dropdown, Navbar, Nav, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Button, InputGroup, FormControl, Container, Row, Col } from 'react-bootstrap';
 import '../App.css';
 import CategoryFunc from './ListingForm';
 
@@ -25,7 +24,7 @@ const buySellHandler = (state, action) => {
             buying: <span style={{ color: '#F2D492' }} >Buying</span>, 
             selling: <span style={{ color: 'white' }} >Selling</span>,
             form: 
-            <InputGroup className="mb-3"  style={{ width: '48vw', marginTop: '4vh' }}>
+            <InputGroup className="mb-3"  style={{ width: '70vw', marginTop: '4vh' }}>
                 <FormControl
                 placeholder="Search"
                 aria-label="Search"
@@ -46,20 +45,15 @@ const buySellHandler = (state, action) => {
       default:
         return { category: <span></span> };
     }
-  }
-
-  
-
-  const conditionSelect = () => {
-      
 }
+
 
 function SearchForm() {
     const initialState = { 
         buying: <span style={{ color: '#F2D492' }} >Buying</span>,
         selling: <span style={{ color: 'white' }} >Selling</span>,
         form: 
-            <InputGroup className="mb-3"  style={{ width: '48vw', marginTop: '4vh' }}>
+            <InputGroup className="mb-3"  style={{ width: '70vw', marginTop: '4vh' }}>
                 <FormControl
                 placeholder="Search"
                 aria-label="Search"
@@ -80,7 +74,7 @@ function SearchForm() {
         borderRadius: 10, 
         margin: 10, 
         height: '5vh', 
-        width: '24vw', 
+        width: '35vw', 
         color: 'white', 
         fontSize: 15,
         paddingTop: '1.5vh'
@@ -89,7 +83,7 @@ function SearchForm() {
         <>
         <div className="App">
             <div className="App-header" style={{ justifyContent: 'start' }}>
-                <Container className="Filter-org">
+                <Row>
                     <a
                         style={{ ...commonButtonStyles }} 
                         onClick={selected}
@@ -102,16 +96,12 @@ function SearchForm() {
                     >
                         {state.selling}
                     </a>
-                </Container>
+                </Row>
                 <Row>
                     {state.form}
                 </Row>
-                
-                
             </div>
-            
         </div>
-            
         </>
     );
 }

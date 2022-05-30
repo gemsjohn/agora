@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab, Dropdown, NavDropdown, SplitButton, DropdownButton } from 'react-bootstrap';
-import SignUpForm from './SignupForm';
-import LoginForm from './LoginForm';
+import { 
+  Navbar, 
+  Nav, 
+  Container, 
+  Dropdown, 
+  DropdownButton,
+  NavDropdown 
+} from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
 import logo from '../assets/logo_lg.png';
-
 import Auth from '../utils/auth';
 
+// Navigation bar that populates on every page
 const AppNavbar = () => {
   const [isShownSearch, setIsShownSearch] = useState(false);
   const [isShownLogin, setIsShownLogin] = useState(false);
-
-  const test = () => {
-    return (
-      <div style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
-        <p>Test</p>
-      </div>
-    );
-  }
 
   const { data: userData } = useQuery(GET_ME);
   const user = userData?.me || {};
@@ -35,7 +32,7 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' style={{ marginRight: '2%' }}>
-              <Nav.Link as={Link} to='/'>
+              <Nav.Link as={Link} to='/search'>
                 <span 
                   className="Nav-style"
                   onMouseEnter={() => setIsShownSearch(true)} 
@@ -47,15 +44,14 @@ const AppNavbar = () => {
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <DropdownButton
-                    as='down'
-                    key='down'
-                    drop='down'
-                    title={user.username}
-                  >
-                    <Dropdown.Item as={Link} to='/profile'>Profile</Dropdown.Item>
-                    <Dropdown.Item onClick={Auth.logout}>Log Out</Dropdown.Item>
-                  </DropdownButton>
+                  <NavDropdown 
+                    title={user.username} 
+                    id="nav-dropdown" 
+                    align={{ lg: 'end' }} 
+                    style={{marginRight: '2vw', color: 'white'}}>
+                    <NavDropdown.Item as={Link} to='/profile'>Profile</NavDropdown.Item>
+                    <NavDropdown.Item onClick={Auth.logout}>Log Out</NavDropdown.Item>
+                  </NavDropdown>
                 </>
               ) : (
                 <Nav.Link as={Link} to='/loginsignup'>

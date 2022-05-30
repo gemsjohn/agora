@@ -2,10 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+
+// Various Page and Component imports used by React Router
 import Placeholder from './pages/placeholder';
 import LoggedIn from './pages/loggedIn';
 import LoginSignup from './pages/loginpage';
 import Navbar from './components/Navbar';
+import SearchForm from './components/SearchForm';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -26,7 +29,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-
+// Primary App function used by index.js. This contains ApolloProvider and React Router.
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -39,6 +42,7 @@ function App() {
             <Route exact path='/' component={Placeholder} />
             <Route exact path='/profile' component={LoggedIn} />
             <Route exact path='/loginsignup' component={LoginSignup} />
+            <Route exact path='/search' component={SearchForm} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </>

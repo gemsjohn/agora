@@ -1,15 +1,17 @@
-// see SignupForm.js for comments
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 
+
 const LoginForm = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
-  // const [showAlert, setShowAlert] = useState(false);
+
+  // Mutation - LOGIN_USER
   const [login, { error }] = useMutation(LOGIN_USER);
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -45,11 +47,9 @@ const LoginForm = () => {
 
   return (
     <>
+      {/* Complete Log In Form: Email, Password, Submit Button */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        {/* <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert> */}
-        <Form.Group style={{ width: '48vw', textAlign: 'left' }}>
+        <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
           <Form.Label htmlFor='email'>Email <span style={{color: 'red' }}>*</span></Form.Label>
           <Form.Control
             type='text'
@@ -62,7 +62,7 @@ const LoginForm = () => {
           <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
         </Form.Group>
 
-        <Form.Group style={{ width: '48vw', textAlign: 'left' }}>
+        <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
           <Form.Label htmlFor='password'>Password <span style={{color: 'red' }}>*</span></Form.Label>
           <Form.Control
             type='password'
@@ -78,7 +78,7 @@ const LoginForm = () => {
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
           variant='success'
-          style={{ width: '48vw' }}>
+          style={{ width: '70vw' }}>
           Submit
         </Button>
       </Form>

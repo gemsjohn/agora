@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import '../App.css';
-import SearchForm from '../components/SearchForm';
 
 const handleFormSubmit = async (event) => {
   event.preventDefault();
@@ -18,7 +17,7 @@ function Placeholder() {
   return (
     <div className="App">
       <div className="App-header" style={{ justifyContent: 'start', paddingTop: '5%' }}>
-        <SearchForm />
+        <p>Main Page - Placeholder</p>
       </div>
     </div>
   );

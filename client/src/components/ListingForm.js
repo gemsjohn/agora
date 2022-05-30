@@ -9,7 +9,7 @@ const commonButtonStyles = {
     borderRadius: 10, 
     margin: '0 0 1vh 1vh', 
     height: '6vh', 
-    width: '20vw', 
+    width: '30vw', 
     color: 'white', 
     fontSize: 15,
     paddingTop: '0.7vh'
@@ -71,6 +71,7 @@ function CondUsedFairHandler() {
     )
 }
 
+// Category 1 button hook: Automotive
 function Category1Handler() {
     const [isShown, setIsShown] = useState(false);
     return (
@@ -84,6 +85,7 @@ function Category1Handler() {
     )
 }
 
+// Category 2 button hook: Clothing / Accessories
 function Category2Handler() {
     const [isShown, setIsShown] = useState(false);
     return (
@@ -97,6 +99,7 @@ function Category2Handler() {
     )
 }
 
+// Category 3 button hook: Household
 function Category3Handler() {
     const [isShown, setIsShown] = useState(false);
     return (
@@ -110,6 +113,7 @@ function Category3Handler() {
     )
 }
 
+// Category 4 button hook: Sporting Goods
 function Category4Handler() {
     const [isShown, setIsShown] = useState(false);
     return (
@@ -163,7 +167,9 @@ const categorySelect = (state, action) => {
     }
   }
 
-function CategoryFunc() {
+// Create New Listing Form
+function NewListingFunc() {
+    // ---- Category Hook -----
     const catInit = {
         categories: null
     }
@@ -171,11 +177,12 @@ function CategoryFunc() {
 
     const catOn = () => dispatch({ type: 'caton' })
     const catOff = () => dispatch({ type: 'catoff' })
+    // -----------------------
 
     return (
                 <div>
                     <p style={{ paddingTop: '2vh'}}>Create New Listing</p>
-                    <Row style={{ width: '48vw', marginTop: '4vh' }}>
+                    <Row style={{ width: '70vw', marginTop: '4vh' }}>
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
                             <FormControl
@@ -201,33 +208,35 @@ function CategoryFunc() {
                             />
                         </InputGroup>
                     </Row>
-                    <Row style={{ width: '48vw'}}>
-                            <InputGroup className="mb-3" style={{ width: '48vw' }}>
+                    <Row style={{ width: '70vw'}}>
+                            <InputGroup className="mb-3">
                                 <Button variant="outline-secondary" id="button-addon1" onClick={catOn}>
                                 Category
                                 </Button>
                                 <FormControl
+                                placeholder="Select Category to see options"
                                 aria-label="Example text with button addon"
                                 aria-describedby="basic-addon1"
                                 />
                             </InputGroup>
                             {state.categories}
-                            <InputGroup className="mb-3" style={{ width: '48vw' }}>
+                            <InputGroup className="mb-3">
                                 <Button variant="outline-secondary" id="button-addon1" onClick={catOff}>
                                 Condition
                                 </Button>
                                 <FormControl
+                                placeholder="Select Condition to see options"
                                 aria-label="Example text with button addon"
                                 aria-describedby="basic-addon1"
                                 />
                             </InputGroup>
                             {state.conditions}
                     </Row>
-                    <Row>
+                    <Row >
                         <Button
                         type='submit'
                         variant='success'
-                        style={{ width: '48vw' }}>
+                        style={{ width: '70vw' }}>
                         Submit
                         </Button>
                     </Row>
@@ -235,4 +244,4 @@ function CategoryFunc() {
     );
 }
 
-export default CategoryFunc;
+export default NewListingFunc;

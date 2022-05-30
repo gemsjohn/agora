@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useReducer } from 'react';
 import { Row } from 'react-bootstrap';
-import logo from '../assets/logo_lg.png';
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
 
-
+// Form handler hook; user is either loging in or signing up
 const formHandler = (state, action) => {
   console.log('state:', state)
   console.log('action:', action)
@@ -39,7 +38,7 @@ const LoginSignup = () => {
     borderRadius: 10, 
     margin: 10, 
     height: '5vh', 
-    width: '24vw', 
+    width: '35vw', 
     color: 'white', 
     fontSize: 15, 
     paddingTop: '1.5vh'
@@ -47,7 +46,7 @@ const LoginSignup = () => {
 
   return (
     <div className="App">
-      <div className="App-header" style={{ justifyContent: 'start', paddingTop: '5%' }}>
+      <div className="App-header" style={{ justifyContent: 'start' }}>
         <Row>
           <a 
             style={{ ...commonButtonStyles }} 
