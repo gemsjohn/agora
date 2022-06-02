@@ -32,15 +32,21 @@ const AppNavbar = () => {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' style={{ marginRight: '2%' }}>
-              <Nav.Link as={Link} to='/search'>
-                <span 
-                  className="Nav-style"
-                  onMouseEnter={() => setIsShownSearch(true)} 
-                  onMouseLeave={() => setIsShownSearch(false)}
-                >
-                  {isShownSearch ? <span style={{ color: '#F2D492'}} >Search</span> : <span>Search</span>}
-                </span>
-              </Nav.Link>
+              {Auth.loggedIn() ? (
+                <>
+                <Nav.Link as={Link} to='/selling'>
+                  <span 
+                    className="Nav-style"
+                    onMouseEnter={() => setIsShownSearch(true)} 
+                    onMouseLeave={() => setIsShownSearch(false)}
+                  >
+                    {isShownSearch ? <span style={{ color: '#F2D492'}} >Selling</span> : <span>Selling</span>}
+                  </span>
+                </Nav.Link>
+                </>
+                ) : (
+                  <span></span>
+                )}
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
