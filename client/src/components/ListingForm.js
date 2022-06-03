@@ -59,7 +59,6 @@ const appendImages = () => {
                 {/* <p style={{ fontSize: '1.5vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>{removeableImageArray[i]}</p> */}
                 <Button style={{ margin: '1vh 0 1vh 0' }}>Remove</Button>
             </div>
-            
         </div>
 
     }
@@ -332,10 +331,12 @@ function NewListingFunc() {
                         {renderBtn}
                     </div>
                     {onSuccess}
-                    <Row>
-                        {stateAppend.append}
-                        {/* {cardImageSetupArray} */}
-                    </Row>
+                    <div style={{ width: '70vw' }}>
+                        <Row>
+                            {stateAppend.append}
+                            {/* {cardImageSetupArray} */}
+                        </Row>
+                    </div>
                     <Row style={{ width: '70vw', marginTop: '4vh' }}>
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
