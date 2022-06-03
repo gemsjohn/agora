@@ -1,8 +1,32 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { Form, Button, InputGroup, FormControl, Container, DropdownButton, Dropdown, Navbar, Nav, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import RenderImg from '../assets/placeholder.jpg';
+import { IKContext, IKImage, IKUpload } from 'imagekitio-react';
+import { ImageKit } from 'imagekit';
 
+const urlEndpoint = 'https://ik.imagekit.io/agora';
+const publicKey = 'public_8mr2np+b3kK+yCiX6kpDbOADJ3M='; 
+const authenticationEndpoint = 'http://localhost:3001/auth';
+
+const imageListingArray = [];
+const cardImageSetupArray = [];
+const removeableImageArray = [];
+
+const styles = {
+    cardImage: {
+      width: '20vw',
+      borderRadius: '25px 25px 0 0'
+    },
+    cardText: {
+      fontSize: '1.5vh',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      width: '20vw'
+    }
+}
 // Sub-button styling for search > selling > category & condition secitons
 const commonButtonStyles = {
     backgroundColor: '#283845', 
@@ -13,6 +37,60 @@ const commonButtonStyles = {
     color: 'white', 
     fontSize: 15,
     paddingTop: '0.7vh'
+}
+
+const onError = err => {
+    console.log("Error", err);
+};
+  
+const onSuccess = res => {
+    console.log("Success", res.name);
+    imageListingArray.push(res.url);
+    removeableImageArray.push(res.name);
+};
+
+const appendImages = () => {
+
+    for ( let i = 0; i < imageListingArray.length; i++) {
+        cardImageSetupArray[i] = 
+        <div style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
+            <img src={imageListingArray[i]} style={styles.cardImage}></img>
+            <div style={styles.cardText}>
+                {/* <p style={{ fontSize: '1.5vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>{removeableImageArray[i]}</p> */}
+                <Button style={{ margin: '1vh 0 1vh 0' }}>Remove</Button>
+            </div>
+            
+        </div>
+
+    }
+    return cardImageSetupArray;
+};
+
+// const removeImages = (rmvimg) => {
+//     let imagekit = new ImageKit({
+//         publicKey : 'public_8mr2np+b3kK+yCiX6kpDbOADJ3M=',
+//         privateKey : 'private_SgwiwYhSBd442/y38EGKhAzIU/c=',
+//         urlEndpoint : 'https://ik.imagekit.io/agora'
+//     });
+//     imagekit.deleteFile(rmvimg, function(error, result) {
+//         if(error) console.log(error);
+//         else console.log(result);
+//     });
+// }
+
+const appendReducer = (stateAppend, actionAppend) => {
+    appendImages();
+    console.log(cardImageSetupArray);
+    console.log('state:', stateAppend)
+    console.log('action:', actionAppend)
+  
+    switch (actionAppend.type) {
+      case 'increment':
+        return { append: cardImageSetupArray }
+      default:
+        console.log('this is the default')
+        return stateAppend
+    }
 }
 
 // Condition button hook: NEW
@@ -178,10 +256,86 @@ function NewListingFunc() {
     const catOn = () => dispatch({ type: 'caton' })
     const catOff = () => dispatch({ type: 'catoff' })
     // -----------------------
+    
+    // ---- Append Images -----
+    const initialState = { append:
+        <div style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
+            <img src={RenderImg} style={styles.cardImage}></img>
+            <div style={styles.cardText}>
+                <Container>
+                    <p style={{ margin: '1vh 0 1vh 0', fontSize: '1.5vh' }}>Upload a File</p>
+                </Container>
+            </div>
+        </div>
+    }
+    const [stateAppend, dispatchAppend] = useReducer(appendReducer, initialState)
+  
+    const increment = () => dispatchAppend({ type: 'increment' })
+    // ------------------------
 
+    //Render Button
+    const [isShown, setIsShown] = useState(false);
+    const [fileUploaded, setFileUploaded] = useState(false);
+    let renderBtn;
+    if (fileUploaded) {
+
+        renderBtn =
+        <a onClick={increment} 
+            style={{ 
+                backgroundColor: '#283845', 
+                borderRadius: 10, 
+                height: '6vh', 
+                width: '20vw', 
+                color: 'white', 
+                fontSize: '1.5vh',
+                paddingTop: '2vh'
+            }}
+            onMouseEnter={() => setIsShown(true)} 
+            onMouseLeave={() => setIsShown(false)}
+        >
+            {isShown ? <span style={{ color: '#F2D492'}} >Render</span> : <span>Render</span>}
+        </a>         
+    }
+
+    appendImages();
     return (
                 <div>
                     <p style={{ paddingTop: '2vh'}}>Create New Listing</p>
+                    <IKContext 
+                        publicKey={publicKey} 
+                        urlEndpoint={urlEndpoint} 
+                        authenticationEndpoint={authenticationEndpoint} 
+                    >
+                        <p style={{ 
+                            display: 'flex', 
+                            flexWrap: 'wrap', 
+                            justifyContent: 'left', 
+                            fontSize: '2vh'
+                        }}>
+                            Upload Image(s)
+                        </p>
+                        <IKUpload
+                        fileName="agora.png"
+                        onError={onError}
+                        onSuccess={onSuccess}
+                        style={{ 
+                            fontSize: '1.5vh', 
+                            color: 'red', 
+                            display: 'flex', 
+                            flexWrap: 'wrap', 
+                            justifyContent: 'left',  
+                        }}
+                        onClick={() => setFileUploaded(true)} 
+                        />
+                    </IKContext>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'left', marginTop: 10}}>
+                        {renderBtn}
+                    </div>
+                    {onSuccess}
+                    <Row>
+                        {stateAppend.append}
+                        {/* {cardImageSetupArray} */}
+                    </Row>
                     <Row style={{ width: '70vw', marginTop: '4vh' }}>
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon1">Title</InputGroup.Text>
