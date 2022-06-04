@@ -14,8 +14,9 @@
     "apollo-server-core": "^3.7.0",
     "apollo-server-express": "^3.7.0",
     "bcrypt": "^5.0.0",
-    "express": "^4.17.1",
+    "express": "^4.18.1",
     "graphql": "^15.5.0",
+    "imagekit": "^3.2.5",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.10"
   },
