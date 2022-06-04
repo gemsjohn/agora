@@ -1,4 +1,5 @@
-# agora
+# Agora
+![Logo Image](https://github.com/gemsjohn/agora/blob/main/client/public/logo.png) 
 
 ## Installation
 - `git clone git@github.com:gemsjohn/agora.git`
@@ -30,4 +31,3 @@
 - Ability to Create a Classifieds Listing
 - Ability to Search for a Listing
 - Ability to Save a Listings to or Remove a Listing from a Watchlist
-
