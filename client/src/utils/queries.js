@@ -6,6 +6,14 @@ export const GET_ME = gql`
             _id
             username
             email
+            addedListing {
+                listId
+                title
+                price
+                description
+                category
+                condition
+            }
         }
     }
 `;

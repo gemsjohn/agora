@@ -49,13 +49,10 @@ function ListingCard() {
   }
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-
   for ( let i = 0; i < 20; i++) {
-    // numSet(i);
     listingCardArray[i] = 
     <>
     <a 
@@ -67,7 +64,12 @@ function ListingCard() {
           <div style={styles.cardText}>
             <p>Item Title_ {i}</p>
             <p>$100.00</p>
-            <Button style={{...commonButtonStyles}} onClick={handleShow}>Open</Button>
+            <Button 
+              style={{...commonButtonStyles}} 
+              onClick={handleShow}
+            >
+              Open
+            </Button>
           </div>
         </div>
     </a>
