@@ -3,6 +3,7 @@ import { Form, Button, Alert, Container, Row, InputGroup} from 'react-bootstrap'
 import { IKContext,IKUpload } from 'imagekitio-react';
 import { useMutation } from '@apollo/client';
 import { ADD_LISTING } from '../utils/mutations';
+import { nanoid } from 'nanoid';
 import Auth from '../utils/auth';
 import RenderImg from '../assets/placeholder.jpg';
 import '../App.css';
@@ -51,6 +52,7 @@ const appendImages = () => {
 
 // Create New Listing Form
 function NewListingFunc() {
+    let listingId = nanoid();
 
     // ************ [START: IMAGE UPLOAD AND RENDER] ************
     // [React State Hook] :: resNameBool starts out false. Updates to true upon image upload. Returns to false once the image has been rendered.
@@ -126,7 +128,7 @@ function NewListingFunc() {
 
     // ************ [START: ADD LISTING] ************
     // set initial form state
-    const [listingFormData, setListingFormData] = useState({ listId: '', title: '',  price: '', description: '', category: '', condition: '' });
+    const [listingFormData, setListingFormData] = useState({ title: '',  price: '', description: '', category: '', condition: '' });
     const [addListing, { error }] = useMutation(ADD_LISTING);
     // set state for form validation
     const [validated] = useState(false);
@@ -153,7 +155,7 @@ function NewListingFunc() {
     
         try {
           const { data } = await addListing({
-            variables: { ...listingFormData, media: urlArray }
+            variables: { ...listingFormData, media: urlArray, listId: listingId }
           });
           console.log(data);
           
@@ -210,7 +212,7 @@ function NewListingFunc() {
                             <Row>{stateAppend.append}</Row>
                         </div>
 
-                        <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
+                        {/* <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
                         <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon1">Listing ID</InputGroup.Text>
                             <Form.Control
@@ -224,7 +226,7 @@ function NewListingFunc() {
                             />
                         </InputGroup> 
                         <Form.Control.Feedback type='invalid'>Listing ID required!</Form.Control.Feedback>
-                        </Form.Group>
+                        </Form.Group> */}
 
                         <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
                         <InputGroup className="mb-3">
@@ -303,7 +305,7 @@ function NewListingFunc() {
                         </Form.Group>
 
                         <Button
-                        disabled={!(listingFormData.listId && listingFormData.title && listingFormData.price && listingFormData.description && listingFormData.category && listingFormData.condition)}
+                        disabled={!(listingFormData.title && listingFormData.price && listingFormData.description && listingFormData.category && listingFormData.condition)}
                         type='submit'
                         variant='success'
                         style={{ width: '70vw', marginBottom: '20vh' }}>

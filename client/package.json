@@ -13,6 +13,7 @@
     "imagekit": "^3.2.5",
     "imagekitio-react": "^1.1.0",
     "jwt-decode": "^2.2.0",
+    "nanoid": "^3.3.4",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
