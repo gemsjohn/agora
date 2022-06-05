@@ -1,6 +1,7 @@
 import React, { useState, useReducer } from 'react';
-import { Form, Button, Alert, Container, Row, InputGroup} from 'react-bootstrap';
-import { IKContext,IKUpload } from 'imagekitio-react';
+import { Form, Button, Alert, Container, Row, InputGroup, OverlayTrigger, Tooltip} from 'react-bootstrap';
+import { IKContext, IKUpload } from 'imagekitio-react';
+import { Link, useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_LISTING } from '../utils/mutations';
 import { nanoid } from 'nanoid';
@@ -108,6 +109,15 @@ function NewListingFunc() {
     if (resNameBool) {
 
         renderBtn =
+        <OverlayTrigger
+            key='right'
+            placement='right'
+            overlay={
+                <Tooltip id={`tooltip-right`}>
+                <strong>Select Render to show your uploaded image.</strong>
+                </Tooltip>
+            }
+        >
         <a onClick={increment} 
             style={{ 
                 backgroundColor: '#283845', 
@@ -122,11 +132,13 @@ function NewListingFunc() {
             onMouseLeave={() => setIsShown(false)}
         >
             {isShown ? <span style={{ color: '#F2D492'}} >Render</span> : <span>Render</span>}
-        </a>         
+        </a>
+        </OverlayTrigger>         
     }
     // ************ [END: RENDER BUTTON] ************
 
     // ************ [START: ADD LISTING] ************
+    const history = useHistory();
     // set initial form state
     const [listingFormData, setListingFormData] = useState({ title: '',  price: '', description: '', category: '', condition: '' });
     const [addListing, { error }] = useMutation(ADD_LISTING);
@@ -158,6 +170,7 @@ function NewListingFunc() {
             variables: { ...listingFormData, media: urlArray, listId: listingId }
           });
           console.log(data);
+          history.push("/complete")
           
         } catch (e) {
           console.error(e);
@@ -167,7 +180,6 @@ function NewListingFunc() {
 
     return (
                 <div>
-                    
                     <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
                         {/* show alert if server response is bad */}
                         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
@@ -201,7 +213,7 @@ function NewListingFunc() {
                             }}
                             />
                         </IKContext>
-
+                        
                         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'left', marginTop: 10}}>
                             {renderBtn}
                         </div>
@@ -211,22 +223,6 @@ function NewListingFunc() {
                         <div style={{ width: '70vw' }}>
                             <Row>{stateAppend.append}</Row>
                         </div>
-
-                        {/* <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
-                        <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1">Listing ID</InputGroup.Text>
-                            <Form.Control
-                                type='text'
-                                placeholder='Listing ID'
-                                name='listId'
-                                id="listId"
-                                onChange={handleInputChange}
-                                value={listingFormData.listId}
-                                required
-                            />
-                        </InputGroup> 
-                        <Form.Control.Feedback type='invalid'>Listing ID required!</Form.Control.Feedback>
-                        </Form.Group> */}
 
                         <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
                         <InputGroup className="mb-3">
@@ -308,9 +304,13 @@ function NewListingFunc() {
                         disabled={!(listingFormData.title && listingFormData.price && listingFormData.description && listingFormData.category && listingFormData.condition)}
                         type='submit'
                         variant='success'
-                        style={{ width: '70vw', marginBottom: '20vh' }}>
+                        style={{ width: '70vw', marginBottom: '20vh' }}
+                        >
                         Submit
                         </Button>
+                        {/* <Row>
+                            <Button style={{ width: '70vw', marginBottom: '20vh' }} as={Link} to="/complete">Test</Button>
+                        </Row> */}
                     </Form>
                     {error && <div>Signup failed</div>}
                 </div>     
