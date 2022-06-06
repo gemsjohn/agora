@@ -10,6 +10,7 @@ import LoginSignup from './pages/loginpage';
 import Navbar from './components/Navbar';
 import SellingForm from './components/SellingForm';
 import ListingComplete from './components/ListingComplete';
+import ViewableListing from './components/ViewableListing';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,6 +46,7 @@ function App() {
             <Route exact path='/loginsignup' component={LoginSignup} />
             <Route exact path='/selling' component={SellingForm} />
             <Route exact path='/complete' component={ListingComplete} />
+            <Route exact path='/listing' component={ViewableListing} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </>

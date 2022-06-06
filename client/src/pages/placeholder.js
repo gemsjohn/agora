@@ -4,6 +4,8 @@ import { Form, Button, InputGroup, FormControl, Card, Row, Modal } from 'react-b
 import '../App.css';
 import RenderImg from '../assets/placeholder.jpg';
 import { GET_LISTINGS } from '../utils/queries';
+import { Link } from 'react-router-dom';
+
 
 const urlEndpoint = 'https://ik.imagekit.io/agora/';
 let modalVar;
@@ -60,9 +62,12 @@ function Placeholder() {
       }
     }
 
+    function handleLocalStorage() {
+
+    }
+
     for (let i = 0; i < listings.length; i++) {
-        function ValidateText()
-        {
+        function ValidateText() {
             let tarea = listings[i].media[0];
             if (tarea.indexOf("http://") == 0 || tarea.indexOf("https://") == 0) {
               return (
@@ -74,6 +79,16 @@ function Placeholder() {
               return <img src={RenderImg} style={styles.cardImage}></img>
             }
         }
+
+        function handleLocalStorage() {
+          localStorage.setItem('listingMedia', listings[i].media)
+          localStorage.setItem('listingTitle', listings[i].title)
+          localStorage.setItem('listingPrice', listings[i].price)
+          localStorage.setItem('listingDescription', listings[i].description)
+          localStorage.setItem('listingCategory', listings[i].category)
+          localStorage.setItem('listingCondition', listings[i].condition)
+        }
+
         ValidateText();
         listingCardArray[i] = 
         <>
@@ -88,7 +103,9 @@ function Placeholder() {
                 <p>{listings[i].price}</p>
                 <Button 
                   style={{...commonButtonStyles }} 
-                  onClick={handleShow}
+                  onClick={handleLocalStorage}
+                  as={Link}
+                  to='/listing'
                 >
                   Open
                 </Button>
