@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useMutation, useQuery } from '@apollo/client';
 import { Form, Button, InputGroup, FormControl, Card, Row, Modal } from 'react-bootstrap';
 import '../App.css';
 import RenderImg from '../assets/placeholder.jpg';
 import { IKImage, IKContext, IKupload } from 'imagekitio-react';
 import { Link } from 'react-router-dom';
+import { GET_LISTINGS } from '../utils/queries';
+import Autopilot from 'twilio/lib/rest/Autopilot';
 
 const urlEndpoint = 'https://ik.imagekit.io/agora/';
 let modalVar;
@@ -32,83 +35,73 @@ const commonButtonStyles = {
   paddingTop: '0.7vh'
 }
 
-function numSet(x) {
-  modalVar = x;
-  return modalVar
-}
 
-function ListingCard() {
-  const styles = {
-    cardImage: {
-      width: '300px',
-      borderRadius: '25px 25px 0 0'
-    },
-    cardText: {
-      fontSize: '1.5vh'
-    }
-  }
+
+function Placeholder() {
+  const { data: listingData } = useQuery(GET_LISTINGS);
+  const listings = listingData?.listings || {};
+  console.log(listings);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  for ( let i = 0; i < 20; i++) {
-    listingCardArray[i] = 
-    <>
-    <a 
-      style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}
-      onClick={() => numSet(i)}
-    >
-        <div>
-          <img src={RenderImg} style={styles.cardImage}></img>
-          <div style={styles.cardText}>
-            <p>Item Title_ {i}</p>
-            <p>$100.00</p>
-            <Button 
-              style={{...commonButtonStyles}} 
-              onClick={handleShow}
-            >
-              Open
-            </Button>
-          </div>
-        </div>
-    </a>
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Item Title_{modalVar}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <div>[Images]</div>
-        <div>[Title]</div>
-        <div>[Price]</div>
-        <div>[Description]</div>
-        <div>[Category]</div>
-        <div>[Condition]</div>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleClose}>
-          Placeholder
-        </Button>
-      </Modal.Footer>
-    </Modal>  
-    </>  
+  
+  let modalVar;
+  function numSet(x) {
+    modalVar = x;
+    return modalVar
   }
-
-  return listingCardArray;
-}
-
-function Placeholder() {
-  const styles = {
-    cardImage: {
-      width: '300px',
-      borderRadius: '25px 25px 0 0'
-    },
-    cardText: {
-      fontSize: '1.5vh'
+  let listingImg;
+  function ListingCard() {
+    const styles = {
+      cardImage: {
+        width: '300px',
+        borderRadius: '25px 25px 0 0'
+      },
+      cardText: { 
+        fontSize: '1.5vh'
+      }
     }
+
+    for (let i = 0; i < listings.length; i++) {
+        function ValidateText()
+        {
+            let tarea = listings[i].media[0];
+            if (tarea.indexOf("http://") == 0 || tarea.indexOf("https://") == 0) {
+              return (
+                <>
+                <img src={(listings[i].media[0])} style={styles.cardImage}></img>
+                </>
+              )
+            } else {
+              return <img src={RenderImg} style={styles.cardImage}></img>
+            }
+        }
+        ValidateText();
+        listingCardArray[i] = 
+        <>
+        <a 
+          style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}
+          onClick={() => numSet(i)}
+        >
+            <div>
+              <ValidateText />
+              <div style={styles.cardText}>
+                <p>{listings[i].title}</p>
+                <p>{listings[i].price}</p>
+                <Button 
+                  style={{...commonButtonStyles }} 
+                  onClick={handleShow}
+                >
+                  Open
+                </Button>
+              </div>
+            </div>
+        </a> 
+        </>
+        }
+  
+    return listingCardArray;
   }
 
   ListingCard();
@@ -131,7 +124,7 @@ function Placeholder() {
         {/* Cards */}
         <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row', margin: '0 12% 0 12%'}}>
           {/* Listing card */}
-          {listingCardArray}
+          {listingCardArray.reverse()}
         </div>
       </div>
     </div>

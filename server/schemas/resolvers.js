@@ -8,16 +8,32 @@ const resolvers = {
         if (context.user) {
           const userData = await User.findOne({ _id: context.user._id})
             .select('-__v -password')
-            // .populate('savedBooks');
+            .populate('addedListing');
           
           return userData;
         }
         throw new AuthenticationError('Not logged in');
       },
-      classified: async (parent, args, context) => {
-        const listingData = await Listing.findOne({ _id: context.listing._id})
-        return listingData;
-      }
+      // users
+      users: async () => {
+        return User.find()
+          .select('-__v -password')
+          .populate('addedListing')
+      },
+      // single user by username
+      user: async (parent, { username }) => {
+        return User.findOne({ username })
+          .select('-__v -password')
+          .populate('addedListing')
+      },
+      // listings
+      listings: async () => {
+        return Listing.find().sort({ createdAt: -1 });
+      },
+      // single listing
+      listing: async (parent, { _id }) => {
+        return Listing.findOne({ _id });
+      },
     },
 
     Mutation: {
@@ -42,16 +58,38 @@ const resolvers = {
         const token = signToken(user);
         return { token, user };
       },
-      addListing: async (parent, {listId, title, price, description, category, condition, media}, context) => {
+      addListing: async (parent, args, context) => {
         if (context.user) {
-          const updatedUser = await User.findOneAndUpdate(
+          const listing = await Listing.create({
+            ...args,
+            username: context.user.username,
+          });
+  
+          await User.findByIdAndUpdate(
             { _id: context.user._id },
-            { $addToSet: { addedListing: { listId: listId, title: title, price: price, description: description, category: category, condition: condition, media: media } } },
+            { $push: { addedListing: listing._id } },
             { new: true }
-          )
+          );
 
-          return updatedUser;
+          return listing;
         }
+        throw new AuthenticationError('You need to be logged in!');
+      },
+      removeListing: async (parent, { listId }, context) => {
+        if (context.user) {
+          const listing = await Listing.findByIdAndDelete(
+            listId,
+            function (err, listed) {
+              if (err) {
+                console.log(err);
+              } else {
+                console.log('Deleted : ', listed);
+              }
+            }
+          );
+          return listing;
+        }
+  
         throw new AuthenticationError('You need to be logged in!');
       },
     }

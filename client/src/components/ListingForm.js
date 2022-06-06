@@ -4,7 +4,6 @@ import { IKContext, IKUpload } from 'imagekitio-react';
 import { Link, useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_LISTING } from '../utils/mutations';
-import { nanoid } from 'nanoid';
 import Auth from '../utils/auth';
 import RenderImg from '../assets/placeholder.jpg';
 import '../App.css';
@@ -53,7 +52,6 @@ const appendImages = () => {
 
 // Create New Listing Form
 function NewListingFunc() {
-    let listingId = nanoid();
 
     // ************ [START: IMAGE UPLOAD AND RENDER] ************
     // [React State Hook] :: resNameBool starts out false. Updates to true upon image upload. Returns to false once the image has been rendered.
@@ -167,7 +165,7 @@ function NewListingFunc() {
     
         try {
           const { data } = await addListing({
-            variables: { ...listingFormData, media: urlArray, listId: listingId }
+            variables: { ...listingFormData, media: urlArray }
           });
           console.log(data);
           history.push("/complete")

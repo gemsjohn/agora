@@ -37,6 +37,11 @@ app.get('/auth', function (req, res) {
   res.send(result);
 });
 
+// imagekit.deleteFile("file_id", function(error, result) {
+//   if(error) console.log(error);
+//   else console.log(result);
+// });
+
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {

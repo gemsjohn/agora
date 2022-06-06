@@ -21,7 +21,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    addedListing: [listingSchema],
+    addedListing: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Listing'
+      }
+    ]
   },
   // set this to use virtual below
   {

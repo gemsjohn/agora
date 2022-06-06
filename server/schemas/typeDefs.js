@@ -11,7 +11,7 @@ const typeDefs = gql`
   }
 
   type Listing {
-    listId: ID
+    _id: ID
     title: String
     price: String
     description: String
@@ -28,13 +28,17 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    classified: Listing
+    users: [User]
+    user(username: String!): User
+    listings: [Listing]
+    listing(_id: ID!): Listing
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addListing(listId: ID, title: String, price: String, description: String, category: String, condition: String, media: [String] ): User
+    addListing(title: String, price: String, description: String, category: String, condition: String, media: [String] ): Listing
+    removeListing(_id: ID!): Listing
   }
   
 `;
