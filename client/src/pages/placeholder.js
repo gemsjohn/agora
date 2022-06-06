@@ -3,10 +3,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { Form, Button, InputGroup, FormControl, Card, Row, Modal } from 'react-bootstrap';
 import '../App.css';
 import RenderImg from '../assets/placeholder.jpg';
-import { IKImage, IKContext, IKupload } from 'imagekitio-react';
-import { Link } from 'react-router-dom';
 import { GET_LISTINGS } from '../utils/queries';
-import Autopilot from 'twilio/lib/rest/Autopilot';
 
 const urlEndpoint = 'https://ik.imagekit.io/agora/';
 let modalVar;

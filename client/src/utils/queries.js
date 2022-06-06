@@ -19,25 +19,6 @@ export const GET_ME = gql`
     }
 `;
 
-export const GET_USER = gql`
-    {
-        user(username: $username) {
-            _id
-            username
-            email
-            addedListing {
-                _id
-                title
-                price
-                description
-                category
-                condition
-                media
-            }
-        }
-    }
-`;
-
 export const GET_USERS = gql`
     {
         users {
