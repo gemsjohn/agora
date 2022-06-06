@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom';
 
 
 const urlEndpoint = 'https://ik.imagekit.io/agora/';
-let modalVar;
 
 const listingCardArray = [];
+
 
 // const handleFormSubmit = async (event) => {
 //   event.preventDefault();
@@ -62,9 +62,9 @@ function Placeholder() {
       }
     }
 
-    function handleLocalStorage() {
-
-    }
+    const refreshPage = ()=>{
+      window.location.reload();
+   }
 
     for (let i = 0; i < listings.length; i++) {
         function ValidateText() {
@@ -81,7 +81,9 @@ function Placeholder() {
         }
 
         function handleLocalStorage() {
-          localStorage.setItem('listingMedia', listings[i].media)
+          localStorage.clear();
+
+          localStorage.setItem('listingMedia', JSON.stringify(listings[i].media))
           localStorage.setItem('listingTitle', listings[i].title)
           localStorage.setItem('listingPrice', listings[i].price)
           localStorage.setItem('listingDescription', listings[i].description)
@@ -101,14 +103,16 @@ function Placeholder() {
               <div style={styles.cardText}>
                 <p>{listings[i].title}</p>
                 <p>{listings[i].price}</p>
-                <Button 
-                  style={{...commonButtonStyles }} 
-                  onClick={handleLocalStorage}
-                  as={Link}
-                  to='/listing'
-                >
-                  Open
-                </Button>
+                <a onClick={refreshPage}>
+                  <Button 
+                    style={{...commonButtonStyles }} 
+                    onClick={handleLocalStorage}
+                    as={Link}
+                    to='/listing'
+                  >
+                    Open
+                  </Button>
+                </a>
               </div>
             </div>
         </a> 
