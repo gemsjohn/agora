@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
-import { Carousel, Nav, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Table } from "react-bootstrap";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 const commonButtonStyles = {
     backgroundColor: '#283845', 
@@ -31,27 +34,58 @@ function ViewableListing() {
     imageArray1 = JSON.parse(media);
 
     function ImageDisplay() {
+        var settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        };
         for (let i = 0; i < imageArray1.length; i++) {
             imageArray2[i] =
-                <img src={imageArray1[i]} style={{ height: '30vh', width: 'auto', margin: '10px'}}></img>
+                <div>
+                    <img src={imageArray1[i]} />
+                </div>
         }
 
-        return imageArray2;
+        return (
+            <Slider {...settings}>
+                {imageArray2}
+            </Slider>
+        )
     }
+    console.log(ImageDisplay())
     
-    // ImageDisplay()
-
     return (
         <div className="App">
             <div className="App-header" style={{ justifyContent: 'start' }}>
-                <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row', margin: '0 12% 0 12%'}}>
-                    <ImageDisplay />
-                </div>
-                <p style={{ marginTop: '10vh', color: 'white' }}>Title: {title}</p>
-                <p style={{ marginTop: '2vh', color: 'white' }}>Price: {price}</p>
-                <p style={{ marginTop: '2vh', color: 'white' }}>Description: {description}</p>
-                <p style={{ marginTop: '2vh', color: 'white' }}>Category: {category}</p>
-                <p style={{ marginTop: '2vh', color: 'white' }}>Condition: {condition}</p>
+            <div className="container" style={{ marginTop: '4vh'}}>
+                <ImageDisplay />
+            </div>
+            <Table striped bordered hover variant="dark" style={{ margin: '4vh 0 10vh 0' }}>
+            <tbody>
+                <tr>
+                <td style={{ width: '20vw'}}>Title</td>
+                <td style={{ justifyContent: 'left' }}>{title}</td>
+                </tr>
+                <tr>
+                <td>Price</td>
+                <td>{price}</td>
+                </tr>
+                <tr>
+                <td>Description</td>
+                <td>{description}</td>
+                </tr>
+                <tr>
+                <td>Category</td>
+                <td>{category}</td>
+                </tr>
+                <tr>
+                <td>Condition</td>
+                <td>{condition}</td>
+                </tr>
+            </tbody>
+            </Table>
             </div>
         </div>
     )
