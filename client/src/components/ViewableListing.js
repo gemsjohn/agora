@@ -23,21 +23,10 @@ let imageArray2 = [];
 function ViewableListing() {
     // const [isShownLogin, setIsShownLogin] = useState(false);
     // const [isShownSignup, setIsShownSignup] = useState(false);
-    let denominator;
-    if (window.innerWidth <= 480) {
-        denominator = 5
-    } else if (window.innerWidth >= 481 && window.innerWidth <= 768) {
-        denominator = 7
-    } else if (window.innerWidth >= 769 && window.innerWidth <= 1024) {
-        denominator = 15
-    } else if (window.innerWidth >= 1025 && window.innerWidth <= 1200) {
-        denominator = 22
-    }else if (window.innerWidth >= 1201) {
-        denominator = 35
-    }
-    function getBaseLog(x, y) {
-        return Math.log(y) / Math.log(x);
-    }
+    
+    let slopeEq = -(7/300) * window.innerWidth + (245/3);
+    let denominator = window.innerWidth/slopeEq;
+
     const state = {
         
         width: (window.innerWidth / denominator)
