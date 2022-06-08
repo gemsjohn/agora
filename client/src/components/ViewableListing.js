@@ -23,11 +23,11 @@ let imageArray2 = [];
 function ViewableListing() {
     // const [isShownLogin, setIsShownLogin] = useState(false);
     // const [isShownSignup, setIsShownSignup] = useState(false);
-    let denominator = 50;
-    let slopeEq = -(7/300) * window.innerWidth + (245/3);
-    denominator = window.innerWidth/slopeEq;
+    // let denominator = 50;
+    // let slopeEq = -(7/300) * window.innerWidth + (245/3);
+    // denominator = window.innerWidth/slopeEq;
 
-    const state = {width: (window.innerWidth / denominator)};
+    const state = {width: (window.innerWidth/50)};
     
     const media = localStorage.getItem('listingMedia');
     const title = localStorage.getItem('listingTitle');
