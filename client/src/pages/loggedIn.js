@@ -30,7 +30,6 @@ const LoggedIn = () => {
 
 
   return (
-    <>
       <div className="App">
         <div className="App-header" style={{ justifyContent: 'start' }}>
             <p>
@@ -65,7 +64,6 @@ const LoggedIn = () => {
             </Card>
         </div>
         </div>
-    </>
   );
 };
 

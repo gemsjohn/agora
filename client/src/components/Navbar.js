@@ -31,7 +31,6 @@ const AppNavbar = () => {
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' style={{ marginRight: '2%' }}>
               {Auth.loggedIn() ? (
-                <>
                 <Nav.Link as={Link} to='/selling'>
                   <span 
                     className="Nav-style"
@@ -41,12 +40,10 @@ const AppNavbar = () => {
                     {isShownSearch ? <span style={{ color: '#F2D492'}} >Selling</span> : <span>Selling</span>}
                   </span>
                 </Nav.Link>
-                </>
                 ) : (
-                  <span></span>
+                  null
                 )}
               {Auth.loggedIn() ? (
-                <>
                   <NavDropdown 
                     title={user.username} 
                     id="nav-dropdown" 
@@ -55,7 +52,6 @@ const AppNavbar = () => {
                     <NavDropdown.Item as={Link} to='/profile'>Profile</NavDropdown.Item>
                     <NavDropdown.Item onClick={Auth.logout}>Log Out</NavDropdown.Item>
                   </NavDropdown>
-                </>
               ) : (
                 <Nav.Link as={Link} to='/login'>
                   <span 

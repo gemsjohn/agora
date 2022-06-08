@@ -15,7 +15,8 @@ const Login = () => {
     width: '35vw', 
     color: 'white', 
     fontSize: 15, 
-    paddingTop: '1.5vh'
+    paddingTop: '1.5vh',
+    textDecoration: 'none'
   }
 
   return (
