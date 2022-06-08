@@ -63,19 +63,20 @@ function Placeholder() {
 
     for (let i = 0; i < listings.length; i++) {
         function ValidateText() {
-            let tarea = listings[i].media[0];
-            if (tarea) {
-              if (tarea.indexOf("http://") === 0 || tarea.indexOf("https://") === 0) {
+            const pattern = /^((http|https|ftp):\/\/)/;
+            let url = listings[i].media[0];
+              if (pattern.test(url)) {
+                // url = "https://" + url;
+                // console.log(url)
                 return (
                   <>
                   {/* eslint-disable-next-line */}
-                  <img src={(listings[i].media[0])} style={styles.cardImage} atl=''></img>
+                  <img src={listings[i].media[0]} style={styles.cardImage} atl=''></img>
                   </>
                 )
               } else {
                 return <img src={RenderImg} style={styles.cardImage} alt=''></img>
               }
-            }
             
         }
 

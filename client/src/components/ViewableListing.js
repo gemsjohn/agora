@@ -26,6 +26,7 @@ function ViewableListing() {
     // let denominator = 50;
     // let slopeEq = -(7/300) * window.innerWidth + (245/3);
     // denominator = window.innerWidth/slopeEq;
+    //
 
     const state = {width: (window.innerWidth/50)};
     
@@ -51,7 +52,7 @@ function ViewableListing() {
         };
         for (let i = 0; i < imageArray1.length; i++) {
             imageArray2[i] =
-                <div>
+                <div key={i}>
                     {/* eslint-disable-next-line */}
                     <img src={imageArray1[i]} style={{ height: 'auto', width: state.width + "vw"}}/>
                 </div>
