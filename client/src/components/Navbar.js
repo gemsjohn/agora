@@ -57,7 +57,7 @@ const AppNavbar = () => {
                   </NavDropdown>
                 </>
               ) : (
-                <Nav.Link as={Link} to='/loginsignup'>
+                <Nav.Link as={Link} to='/login'>
                   <span 
                     className="Nav-style"
                     onMouseEnter={() => setIsShownLogin(true)} 

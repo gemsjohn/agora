@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
-// import SignupForm from '../components/SignupForm';
+import SignupForm from '../components/SignupForm';
 
 // Form handler hook; user is either loging in or signing up
 // const formHandler = (state, action) => {
@@ -20,7 +20,7 @@ import LoginForm from '../components/LoginForm';
 //   }
 // }
 
-const Login = () => {
+const SignUp = () => {
   const initialState = { form: <LoginForm />  }
   // const [state, dispatch] = useReducer(formHandler, initialState)
 
@@ -73,7 +73,7 @@ const Login = () => {
           </Link>
         </Row>
         <Row style={{ fontSize: 15,  }}>
-          <LoginForm /> 
+          <SignupForm />
         </Row>
       </div>
     </div>
@@ -81,4 +81,4 @@ const Login = () => {
 }
 
 
-export default Login;
+export default SignUp;
