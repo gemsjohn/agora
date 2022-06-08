@@ -89,6 +89,7 @@ function Placeholder() {
           localStorage.setItem('listingDescription', listings[i].description)
           localStorage.setItem('listingCategory', listings[i].category)
           localStorage.setItem('listingCondition', listings[i].condition)
+          localStorage.setItem('listingContact', listings[i].contact)
         }
 
         ValidateText();

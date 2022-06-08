@@ -29,7 +29,7 @@ function ListingComplete() {
                         onMouseEnter={() => setIsShownLogin(true)} 
                         onMouseLeave={() => setIsShownLogin(false)}
                     >
-                        {isShownLogin ? <span style={{ color: '#F2D492'}} >Retrun Home</span> : <span>Retrun Home</span>}
+                        {isShownLogin ? <span style={{ color: '#F2D492'}} >Return Home</span> : <span>Return Home</span>}
                     </Link>
                     <Link 
                         style={{ ...commonButtonStyles }} 

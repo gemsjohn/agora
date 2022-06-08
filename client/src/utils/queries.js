@@ -47,6 +47,7 @@ export const GET_LISTINGS = gql`
             description
             category
             condition
+            contact
             media
         }
     }
