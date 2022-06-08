@@ -322,9 +322,6 @@ function NewListingFunc() {
                         >
                         Submit
                         </Button>
-                        {/* <Row>
-                            <Button style={{ width: '70vw', marginBottom: '20vh' }} as={Link} to="/complete">Test</Button>
-                        </Row> */}
                     </Form>
                     {error && <div>Signup failed</div>}
                 </div>     

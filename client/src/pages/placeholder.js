@@ -109,7 +109,6 @@ function Placeholder() {
               <div style={styles.cardText}>
                 <p>{listings[i].title}</p>
                 <p>{listings[i].price}</p>
-                {/* <a onClick={refreshPage}> */}
                   <Button 
                     style={{...commonButtonStyles }} 
                     onClick={handleLocalStorage}
@@ -118,7 +117,6 @@ function Placeholder() {
                   >
                     Open
                   </Button>
-                {/* </a> */}
               </div>
             </div>
         </a> 
@@ -134,7 +132,6 @@ function Placeholder() {
     <>
     <div className="App">
       <div className="App-header" style={{ justifyContent: 'start' }}>
-      {/* Search bar */}
         <InputGroup className="mb-3"  style={{ width: '70vw', marginTop: '4vh' }}>
           <FormControl
             placeholder="Search"
@@ -145,9 +142,7 @@ function Placeholder() {
             Search
           </Button>
         </InputGroup>
-        {/* Cards */}
         <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center', flexDirection: 'row', margin: '0 12% 0 12%'}}>
-          {/* Listing card */}
           {listingCardArray.reverse()}
         </div>
       </div>

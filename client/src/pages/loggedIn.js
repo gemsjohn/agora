@@ -36,7 +36,7 @@ const LoggedIn = () => {
             <p>
              {user.username} Profile
             </p>
-            {/* Watchlist card */}
+
             <Card style={styles.card}>
               <Card.Header style={styles.cardHeader}>Watchlist</Card.Header>
               <Card.Body>
@@ -46,7 +46,6 @@ const LoggedIn = () => {
               </Card.Body>
             </Card>
 
-            {/* Watchlist card */}
             <Card style={styles.card}>
               <Card.Header style={styles.cardHeader}>Listings</Card.Header>
               <Card.Body>
@@ -56,7 +55,6 @@ const LoggedIn = () => {
               </Card.Body>
             </Card>
 
-            {/* Watchlist card */}
             <Card style={styles.card}>
               <Card.Header style={styles.cardHeader}>Recently Viewed</Card.Header>
               <Card.Body>
