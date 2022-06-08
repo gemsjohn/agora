@@ -45,7 +45,6 @@ const AppNavbar = () => {
                 ) : (
                   <span></span>
                 )}
-              {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
                   <NavDropdown 
