@@ -80,7 +80,6 @@ function SearchForm() {
         paddingTop: '1.5vh'
     }
     return (
-        <>
         <div className="App">
             <div className="App-header" style={{ justifyContent: 'start' }}>
                 <Row>
@@ -102,7 +101,6 @@ function SearchForm() {
                 </Row>
             </div>
         </div>
-        </>
     );
 }
 

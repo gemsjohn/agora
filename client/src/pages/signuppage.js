@@ -3,34 +3,9 @@ import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SignupForm from '../components/SignupForm';
 
-// Form handler hook; user is either loging in or signing up
-// const formHandler = (state, action) => {
-//   console.log('state:', state)
-//   console.log('action:', action)
-
-//   switch (action.type) {
-//     case 'login':
-//       return { form: <LoginForm /> }
-//     case 'signup':
-//       return { form: <SignupForm /> }
-//     default:
-//       return { form: <h1>Default</h1> };
-//   }
-// }
-
 const SignUp = () => {
-  // const initialState = { form: <LoginForm />  }
-  // const [state, dispatch] = useReducer(formHandler, initialState)
-
   const [isShownLogin, setIsShownLogin] = useState(false);
   const [isShownSignup, setIsShownSignup] = useState(false);
-
-  // const login = () => dispatch({ type: 'login' })
-  // const signup = () => dispatch({ type: 'signup' })
-
-  // useEffect(() => {
-  //   console.log('form changed')
-  // }, [state.form])
 
   const commonButtonStyles = {
     backgroundColor: '#283845', 
@@ -49,7 +24,6 @@ const SignUp = () => {
         <Row>
           <Link 
             style={{ ...commonButtonStyles }} 
-            // onClick={login}
             onMouseEnter={() => setIsShownLogin(true)} 
             onMouseLeave={() => setIsShownLogin(false)}
             as={Link}
@@ -60,7 +34,6 @@ const SignUp = () => {
           </Link>
           <Link 
             style={{ ...commonButtonStyles }} 
-            // onClick={signup}
             onMouseEnter={() => setIsShownSignup(true)} 
             onMouseLeave={() => setIsShownSignup(false)}
             as={Link}

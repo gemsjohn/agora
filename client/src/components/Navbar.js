@@ -18,7 +18,6 @@ const AppNavbar = () => {
 
   const { data: userData } = useQuery(GET_ME);
   const user = userData?.me || {};
-  // console.log(user);
 
   return (
     <>

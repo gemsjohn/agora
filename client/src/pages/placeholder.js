@@ -50,7 +50,6 @@ function Placeholder() {
     modalVar = x;
     return modalVar
   }
-  // let listingImg;
   function ListingCard() {
     const styles = {
       cardImage: {
@@ -61,10 +60,6 @@ function Placeholder() {
         fontSize: '1.5vh'
       }
     }
-
-  //   const refreshPage = ()=>{
-  //     window.location.reload();
-  //  }
 
     for (let i = 0; i < listings.length; i++) {
         function ValidateText() {
@@ -127,7 +122,6 @@ function Placeholder() {
   ListingCard();
 
   return (
-    <>
     <div className="App">
       <div className="App-header" style={{ justifyContent: 'start' }}>
         <InputGroup className="mb-3"  style={{ width: '70vw', marginTop: '4vh' }}>
@@ -145,7 +139,6 @@ function Placeholder() {
         </div>
       </div>
     </div>
-    </>
   );
 }
 
