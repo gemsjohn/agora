@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Nav, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const commonButtonStyles = {

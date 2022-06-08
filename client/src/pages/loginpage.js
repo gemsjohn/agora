@@ -53,6 +53,7 @@ const LoginSignup = () => {
             onClick={login}
             onMouseEnter={() => setIsShownLogin(true)} 
             onMouseLeave={() => setIsShownLogin(false)}
+            href=''
           >
             {isShownLogin ? <span style={{ color: '#F2D492'}} >Log In</span> : <span>Log In</span>}
           </a>
@@ -61,6 +62,7 @@ const LoginSignup = () => {
             onClick={signup}
             onMouseEnter={() => setIsShownSignup(true)} 
             onMouseLeave={() => setIsShownSignup(false)}
+            href=''
           >
             {isShownSignup ? <span style={{ color: '#F2D492'}} >Sign Up</span> : <span>Sign Up</span>}
           </a>

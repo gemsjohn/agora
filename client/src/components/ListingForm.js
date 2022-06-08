@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { Form, Button, Alert, Container, Row, InputGroup, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { IKContext, IKUpload } from 'imagekitio-react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_LISTING } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -128,6 +128,7 @@ function NewListingFunc() {
             }}
             onMouseEnter={() => setIsShown(true)} 
             onMouseLeave={() => setIsShown(false)}
+            href=""
         >
             {isShown ? <span style={{ color: '#F2D492'}} >Render</span> : <span>Render</span>}
         </a>

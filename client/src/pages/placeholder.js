@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useMutation, useQuery } from '@apollo/client';
-import { Form, Button, InputGroup, FormControl, Card, Row, Modal } from 'react-bootstrap';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import '../App.css';
 import RenderImg from '../assets/placeholder.jpg';
 import { GET_LISTINGS } from '../utils/queries';
 import { Link } from 'react-router-dom';
 
 
-const urlEndpoint = 'https://ik.imagekit.io/agora/';
+// const urlEndpoint = 'https://ik.imagekit.io/agora/';
 
 const listingCardArray = [];
 
@@ -41,16 +41,16 @@ function Placeholder() {
   const listings = listingData?.listings || {};
   console.log(listings);
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
   
   let modalVar;
   function numSet(x) {
     modalVar = x;
     return modalVar
   }
-  let listingImg;
+  // let listingImg;
   function ListingCard() {
     const styles = {
       cardImage: {
@@ -62,22 +62,25 @@ function Placeholder() {
       }
     }
 
-    const refreshPage = ()=>{
-      window.location.reload();
-   }
+  //   const refreshPage = ()=>{
+  //     window.location.reload();
+  //  }
 
     for (let i = 0; i < listings.length; i++) {
         function ValidateText() {
             let tarea = listings[i].media[0];
-            if (tarea.indexOf("http://") == 0 || tarea.indexOf("https://") == 0) {
-              return (
-                <>
-                <img src={(listings[i].media[0])} style={styles.cardImage}></img>
-                </>
-              )
-            } else {
-              return <img src={RenderImg} style={styles.cardImage}></img>
+            if (tarea) {
+              if (tarea.indexOf("http://") === 0 || tarea.indexOf("https://") === 0) {
+                return (
+                  <>
+                  <img src={(listings[i].media[0])} style={styles.cardImage} atl=''></img>
+                  </>
+                )
+              } else {
+                return <img src={RenderImg} style={styles.cardImage} alt=''></img>
+              }
             }
+            
         }
 
         function handleLocalStorage() {
@@ -98,13 +101,15 @@ function Placeholder() {
         <a 
           style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}
           onClick={() => numSet(i)}
+          key={i}
+          href=''
         >
             <div>
               <ValidateText />
               <div style={styles.cardText}>
                 <p>{listings[i].title}</p>
                 <p>{listings[i].price}</p>
-                <a onClick={refreshPage}>
+                {/* <a onClick={refreshPage}> */}
                   <Button 
                     style={{...commonButtonStyles }} 
                     onClick={handleLocalStorage}
@@ -113,7 +118,7 @@ function Placeholder() {
                   >
                     Open
                   </Button>
-                </a>
+                {/* </a> */}
               </div>
             </div>
         </a> 
@@ -152,18 +157,3 @@ function Placeholder() {
 }
 
 export default Placeholder;
-
-
-        {/* <IKContext urlEndpoint={urlEndpoint}>
-          <IKImage 
-              path="default-image.jpg"
-              transformation={[{
-                height: 200,
-                width: 200,
-                cropMode: 'extract'
-              }]}
-              loading="lazy"
-              height="200"
-              width="200"
-            />
-        </IKContext> */}

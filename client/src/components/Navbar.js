@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   Navbar, 
   Nav, 
-  Container, 
-  Dropdown, 
-  DropdownButton,
+  Container,
   NavDropdown 
 } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
@@ -20,14 +18,14 @@ const AppNavbar = () => {
 
   const { data: userData } = useQuery(GET_ME);
   const user = userData?.me || {};
-  console.log(user);
+  // console.log(user);
 
   return (
     <>
       <Navbar style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
         <Container fluid>
           <Navbar.Brand as={Link} to='/' style={{ marginLeft: '2%' }}>
-            <img src={logo} style={{ height: 50, width: 150 }}></img>
+            <img src={logo} style={{ height: 50, width: 150 }} atl=''></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
