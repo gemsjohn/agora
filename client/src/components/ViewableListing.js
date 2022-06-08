@@ -38,6 +38,7 @@ function ViewableListing() {
     const description = localStorage.getItem('listingDescription');
     const category = localStorage.getItem('listingCategory');
     const condition = localStorage.getItem('listingCondition');
+    const contact= localStorage.getItem('listingContact');
 
     imageArray1 = JSON.parse(media);
 
@@ -93,6 +94,10 @@ function ViewableListing() {
                 <tr>
                 <td>Condition</td>
                 <td>{condition}</td>
+                </tr>
+                <tr>
+                <td>Contact</td>
+                <td>{contact}</td>
                 </tr>
             </tbody>
             </Table>
