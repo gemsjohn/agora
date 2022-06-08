@@ -5,16 +5,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-const commonButtonStyles = {
-    backgroundColor: '#283845', 
-    borderRadius: 10, 
-    margin: 10, 
-    height: '5vh', 
-    width: '20vw', 
-    color: 'white', 
-    fontSize: 15, 
-    paddingTop: '1.5vh'
-}
+// const commonButtonStyles = {
+//     backgroundColor: '#283845', 
+//     borderRadius: 10, 
+//     margin: 10, 
+//     height: '5vh', 
+//     width: '20vw', 
+//     color: 'white', 
+//     fontSize: 15, 
+//     paddingTop: '1.5vh'
+// }
 
 let imageArray1 = [];
 let imageArray2 = [];
@@ -55,6 +55,7 @@ function ViewableListing() {
         for (let i = 0; i < imageArray1.length; i++) {
             imageArray2[i] =
                 <div>
+                    {/* eslint-disable-next-line */}
                     <img src={imageArray1[i]} style={{ height: 'auto', width: state.width + "vw"}}/>
                 </div>
         }

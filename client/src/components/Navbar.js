@@ -25,6 +25,7 @@ const AppNavbar = () => {
       <Navbar style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
         <Container fluid>
           <Navbar.Brand as={Link} to='/' style={{ marginLeft: '2%' }}>
+          {/* eslint-disable-next-line */}
             <img src={logo} style={{ height: 50, width: 150 }} atl=''></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />

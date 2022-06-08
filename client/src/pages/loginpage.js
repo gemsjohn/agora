@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useReducer } from 'react';
+import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import LoginForm from '../components/LoginForm';
@@ -21,7 +20,7 @@ import LoginForm from '../components/LoginForm';
 // }
 
 const Login = () => {
-  const initialState = { form: <LoginForm />  }
+  // const initialState = { form: <LoginForm />  }
   // const [state, dispatch] = useReducer(formHandler, initialState)
 
   const [isShownLogin, setIsShownLogin] = useState(false);

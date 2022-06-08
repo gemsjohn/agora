@@ -116,6 +116,7 @@ function NewListingFunc() {
                 </Tooltip>
             }
         >
+        {/* eslint-disable-next-line */}
         <a onClick={increment} 
             style={{ 
                 backgroundColor: '#283845', 

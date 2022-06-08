@@ -73,6 +73,7 @@ function Placeholder() {
               if (tarea.indexOf("http://") === 0 || tarea.indexOf("https://") === 0) {
                 return (
                   <>
+                  {/* eslint-disable-next-line */}
                   <img src={(listings[i].media[0])} style={styles.cardImage} atl=''></img>
                   </>
                 )
@@ -97,14 +98,12 @@ function Placeholder() {
 
         ValidateText();
         listingCardArray[i] = 
-        <>
-        <a 
+        <div 
           style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}
           onClick={() => numSet(i)}
           key={i}
-          href=''
         >
-            <div>
+            <div >
               <ValidateText />
               <div style={styles.cardText}>
                 <p>{listings[i].title}</p>
@@ -119,8 +118,7 @@ function Placeholder() {
                   </Button>
               </div>
             </div>
-        </a> 
-        </>
+        </div> 
         }
   
     return listingCardArray;

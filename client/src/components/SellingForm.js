@@ -2,17 +2,6 @@ import React from 'react';
 import '../App.css';
 import CategoryFunc from './ListingForm';
 
-const handleFormSubmit = async (event) => {
-  event.preventDefault();
-
-  // check if form has everything (as per react-bootstrap docs)
-  const form = event.currentTarget;
-  if (form.checkValidity() === false) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-};
-
 function SellingForm() {
     return (
         <>
