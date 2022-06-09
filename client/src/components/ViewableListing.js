@@ -30,7 +30,7 @@ function ViewableListing() {
     let slopeEq = -(7/300) * window.innerWidth + (245/3);
     let denominator = window.innerWidth/slopeEq;
 
-    const state = {width: (window.innerWidth/denominator)};
+    const state = {width: (window.innerWidth/50)};
     
     const _id = localStorage.getItem('listingID');
     const media = localStorage.getItem('listingMedia');
@@ -101,10 +101,10 @@ function ViewableListing() {
     return (
         <div className="App">
             <div className="App-header" style={{ justifyContent: 'start' }}>
-            <div className="container" style={{ marginTop: '4vh', display: 'true', width: state.width + "vw"}}>
+            <div className="container" style={{ marginTop: '2vh', display: 'true', width: state.width + "vw"}}>
                 <ImageDisplay />
             </div>
-            <Table striped bordered hover variant="dark" style={{ margin: '4vh 0 4vh 0' }}>
+            <Table striped bordered hover variant="dark" style={{ margin: '4vh 0 4vh 0', width: '70vw', height: 'auto', fontSize: '2vh' }}>
             <tbody>
                 <tr>
                 <td style={{ width: '20vw'}}>Title</td>

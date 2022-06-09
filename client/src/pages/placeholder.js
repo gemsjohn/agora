@@ -2,12 +2,14 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Button, InputGroup, FormControl } from 'react-bootstrap';
 import '../App.css';
-import RenderImg from '../assets/placeholder.jpg';
+// import RenderImg from '../assets/placeholder.jpg';
 import { GET_LISTINGS } from '../utils/queries';
 import { Link } from 'react-router-dom';
+import { IKImage, IKContext } from 'imagekitio-react'; 
 
 
-// const urlEndpoint = 'https://ik.imagekit.io/agora/';
+const urlEndpoint = 'https://ik.imagekit.io/agora/';
+const RenderImg = "https://ik.imagekit.io/agora/placeholder_6BhauKy5j.jpg?ik-sdk-version=javascript-1.4.3&updatedAt=1654809198073";
 
 const listingCardArray = [];
 
@@ -25,10 +27,10 @@ const listingCardArray = [];
 
 const commonButtonStyles = {
   backgroundColor: '#283845', 
-  borderRadius: 10, 
-  margin: '0 0 1vh 1vh', 
+  borderRadius: 25, 
+  margin: '0 0 1vh 0', 
   height: '6vh', 
-  width: '300px', 
+  width: '200px', 
   color: 'white', 
   fontSize: 15,
   paddingTop: '0.7vh'
@@ -53,8 +55,9 @@ function Placeholder() {
   function ListingCard() {
     const styles = {
       cardImage: {
-        width: '300px',
-        borderRadius: '25px 25px 0 0'
+        borderRadius: '25px 25px 0 0',
+        borderColor: 'white',
+        borderStyle: 'solid'
       },
       cardText: { 
         fontSize: '1.5vh'
@@ -70,12 +73,34 @@ function Placeholder() {
                 // console.log(url)
                 return (
                   <>
+                  <IKContext urlEndpoint={urlEndpoint}>
+                    <IKImage
+                      src={listings[i].media[0]}
+                      style={styles.cardImage}
+                      transformation={[{
+                        height: 200,
+                        width: 200
+                      }]}
+                    />
+                  </IKContext>
                   {/* eslint-disable-next-line */}
-                  <img src={listings[i].media[0]} style={styles.cardImage} atl=''></img>
+                  {/* <img src={listings[i].media[0]} style={styles.cardImage} atl=''></img> */}
                   </>
                 )
               } else {
-                return <img src={RenderImg} style={styles.cardImage} alt=''></img>
+                return (
+                  <IKContext urlEndpoint={urlEndpoint}>
+                    <IKImage
+                      src={RenderImg}
+                      style={styles.cardImage}
+                      transformation={[{
+                        height: 200,
+                        width: 200
+                      }]}
+                    />
+                  </IKContext>
+                )
+                // return <img src={RenderImg} style={styles.cardImage} alt=''></img>
               }
             
         }
@@ -103,15 +128,15 @@ function Placeholder() {
         ValidateText();
         listingCardArray[i] = 
         <div 
-          style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}
+          style={{ backgroundColor: '#283845', borderRadius: 25, margin: 10, color: 'white' }}
           onClick={() => numSet(i)}
           key={i}
         >
             <div >
               <ValidateText />
               <div style={styles.cardText}>
-                <p>{listings[i].title}</p>
-                <p>{listings[i].price}</p>
+                <p>{listings[i].title ? listings[i].title : "Title"}</p>
+                <p>{listings[i].price ? listings[i].price : "Price"}</p>
                   <Button 
                     style={{...commonButtonStyles }} 
                     onClick={handleLocalStorage}

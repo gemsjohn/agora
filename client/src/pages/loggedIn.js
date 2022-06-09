@@ -23,7 +23,9 @@ const styles2 = {
   cardImage: {
     width: '150px',
     height: '120px',
-    borderRadius: '25px 25px 0 0'
+    borderRadius: '25px 25px 0 0',
+    borderColor: 'white',
+    borderStyle: 'solid'
   },
   cardText: { 
     fontSize: '1.5vh'
