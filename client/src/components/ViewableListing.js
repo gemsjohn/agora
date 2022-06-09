@@ -1,8 +1,11 @@
 import React from "react";
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
+import { useMutation } from '@apollo/client';
 import Slider from "react-slick";
+import { ADD_WATCHLIST } from '../utils/mutations';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Auth from '../utils/auth';
 
 
 // const commonButtonStyles = {
@@ -29,6 +32,7 @@ function ViewableListing() {
 
     const state = {width: (window.innerWidth/denominator)};
     
+    const _id = localStorage.getItem('listingID');
     const media = localStorage.getItem('listingMedia');
     const title = localStorage.getItem('listingTitle');
     const price = localStorage.getItem('listingPrice');
@@ -37,7 +41,10 @@ function ViewableListing() {
     const condition = localStorage.getItem('listingCondition');
     const contact= localStorage.getItem('listingContact');
 
+    const _idUpdate = (_id.replace(/['"]+/g, ''));
+
     imageArray1 = JSON.parse(media);
+    console.log(imageArray1)
 
     function ImageDisplay() {
         
@@ -64,6 +71,32 @@ function ViewableListing() {
         )
     }
     console.log(window.innerWidth)
+
+    const [addToWatchlist] = useMutation(ADD_WATCHLIST);
+
+    const handleAddToWatchlist = async (listingId, title, price, media) => {
+
+        // get token
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        console.log(token);
+
+        if (!token) {
+        return false;
+        }
+
+        console.log(media)
+
+        try {
+            const { data } = await addToWatchlist({
+              variables: { id: listingId, title: title, price: price, media: media }
+            });
+            console.log(data);
+            
+        } catch (e) {
+            console.error(e);
+        }
+        
+      };
     
     return (
         <div className="App">
@@ -71,7 +104,7 @@ function ViewableListing() {
             <div className="container" style={{ marginTop: '4vh', display: 'true', width: state.width + "vw"}}>
                 <ImageDisplay />
             </div>
-            <Table striped bordered hover variant="dark" style={{ margin: '4vh 0 10vh 0' }}>
+            <Table striped bordered hover variant="dark" style={{ margin: '4vh 0 4vh 0' }}>
             <tbody>
                 <tr>
                 <td style={{ width: '20vw'}}>Title</td>
@@ -99,6 +132,11 @@ function ViewableListing() {
                 </tr>
             </tbody>
             </Table>
+            {Auth.loggedIn() ? (
+                <Button onClick={() => handleAddToWatchlist(_idUpdate, title, price, imageArray1)} style={{ width: '70vw', marginBottom: '10vh' }}>Add to Watchlist</Button>
+            ) : (
+                null
+            )}
             </div>
         </div>
     )

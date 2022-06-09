@@ -8,6 +8,7 @@ const typeDefs = gql`
     username: String
     email: String
     addedListing: [Listing]
+    watchlist: [Listing]
   }
 
   type Listing {
@@ -39,6 +40,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     addListing(title: String, price: String, description: String, category: String, condition: String, contact: String, media: [String] ): Listing
+    addToWatchlist(_id: String!, title: String, price: String, description: String, category: String, condition: String, contact: String, media: [String]): User
     removeListing(_id: ID!): Listing
   }
   

@@ -75,19 +75,15 @@ const resolvers = {
         }
         throw new AuthenticationError('You need to be logged in!');
       },
-      removeListing: async (parent, { listId }, context) => {
+      addToWatchlist: async (parent, { _id, title, price, description, category, condition, contact, media }, context) => {
         if (context.user) {
-          const listing = await Listing.findByIdAndDelete(
-            listId,
-            function (err, listed) {
-              if (err) {
-                console.log(err);
-              } else {
-                console.log('Deleted : ', listed);
-              }
-            }
-          );
-          return listing;
+          const updatedUser = await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { watchlist: { _id: _id, title: title, price: price, description: description, category: category, condition: condition, contact: contact, media: media } } },
+            { new: true }
+          )
+  
+          return updatedUser;
         }
   
         throw new AuthenticationError('You need to be logged in!');

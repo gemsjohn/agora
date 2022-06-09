@@ -13,8 +13,9 @@ import Auth from '../utils/auth';
 
 // Navigation bar that populates on every page
 const AppNavbar = () => {
-  const [isShownSearch, setIsShownSearch] = useState(false);
   const [isShownLogin, setIsShownLogin] = useState(false);
+  const [isShownSearch, setIsShownSearch] = useState(false);
+  
 
   const { data: userData } = useQuery(GET_ME);
   const user = userData?.me || {};

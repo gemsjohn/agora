@@ -87,9 +87,9 @@ function NewListingFunc() {
         <div style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
             <img src={RenderImg} style={styles.cardImage} alt=""></img>
             <div style={styles.cardText}>
-                <Container>
+                <div>
                     <p style={{ margin: '1vh 0 1vh 0', fontSize: '1.5vh' }}>Upload a File</p>
-                </Container>
+                </div>
             </div>
         </div>
     }
@@ -116,7 +116,6 @@ function NewListingFunc() {
                 </Tooltip>
             }
         >
-        {/* eslint-disable-next-line */}
         <a onClick={increment} 
             style={{ 
                 backgroundColor: '#283845', 
@@ -129,7 +128,6 @@ function NewListingFunc() {
             }}
             onMouseEnter={() => setIsShown(true)} 
             onMouseLeave={() => setIsShown(false)}
-            href=""
         >
             {isShown ? <span style={{ color: '#F2D492'}} >Render</span> : <span>Render</span>}
         </a>
@@ -324,7 +322,7 @@ function NewListingFunc() {
                         Submit
                         </Button>
                     </Form>
-                    {error && <div>Signup failed</div>}
+                    {error && <div>Create Listing Failed</div>}
                 </div>     
     );
 }

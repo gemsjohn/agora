@@ -81,8 +81,16 @@ function Placeholder() {
         }
 
         function handleLocalStorage() {
-          localStorage.clear();
-
+          localStorage.removeItem('listingID')
+          localStorage.removeItem('listingMedia')
+          localStorage.removeItem('listingTitle')
+          localStorage.removeItem('listingPrice')
+          localStorage.removeItem('listingDescription')
+          localStorage.removeItem('listingCategory')
+          localStorage.removeItem('listingCondition')
+          localStorage.removeItem('listingContact')
+          
+          localStorage.setItem('listingID', JSON.stringify(listings[i]._id))
           localStorage.setItem('listingMedia', JSON.stringify(listings[i].media))
           localStorage.setItem('listingTitle', listings[i].title)
           localStorage.setItem('listingPrice', listings[i].price)
