@@ -11,7 +11,7 @@ import '../App.css';
 // imagekit.io dependencies
 const urlEndpoint = 'https://ik.imagekit.io/agora';
 const publicKey = 'public_8mr2np+b3kK+yCiX6kpDbOADJ3M='; 
-const authenticationEndpoint = 'http://localhost:3001/auth';
+const authenticationEndpoint = 'https://gentle-thicket-11746.herokuapp.com/auth';
 
 // Variables
 const imageListingArray = [];
