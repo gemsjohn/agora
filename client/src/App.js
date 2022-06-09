@@ -6,7 +6,8 @@ import { setContext } from '@apollo/client/link/context';
 // Various Page and Component imports used by React Router
 import Placeholder from './pages/placeholder';
 import LoggedIn from './pages/loggedIn';
-import LoginSignup from './pages/loginpage';
+import Login from './pages/loginpage';
+import SignUp from './pages/signuppage';
 import Navbar from './components/Navbar';
 import SellingForm from './components/SellingForm';
 import ListingComplete from './components/ListingComplete';
@@ -43,7 +44,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Placeholder} />
             <Route exact path='/profile' component={LoggedIn} />
-            <Route exact path='/loginsignup' component={LoginSignup} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={SignUp} />
             <Route exact path='/selling' component={SellingForm} />
             <Route exact path='/complete' component={ListingComplete} />
             <Route exact path='/listing' component={ViewableListing} />

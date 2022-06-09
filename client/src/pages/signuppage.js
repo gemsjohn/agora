@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import LoginForm from '../components/LoginForm';
+import SignupForm from '../components/SignupForm';
 
-const Login = () => {
+const SignUp = () => {
   const [isShownLogin, setIsShownLogin] = useState(false);
   const [isShownSignup, setIsShownSignup] = useState(false);
 
@@ -15,8 +15,7 @@ const Login = () => {
     width: '35vw', 
     color: 'white', 
     fontSize: 15, 
-    paddingTop: '1.5vh',
-    textDecoration: 'none'
+    paddingTop: '1.5vh'
   }
 
   return (
@@ -45,7 +44,7 @@ const Login = () => {
           </Link>
         </Row>
         <Row style={{ fontSize: 15,  }}>
-          <LoginForm /> 
+          <SignupForm />
         </Row>
       </div>
     </div>
@@ -53,4 +52,4 @@ const Login = () => {
 }
 
 
-export default Login;
+export default SignUp;

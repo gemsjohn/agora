@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { 
   Navbar, 
   Nav, 
-  Container, 
-  Dropdown, 
-  DropdownButton,
+  Container,
   NavDropdown 
 } from 'react-bootstrap';
 import { useQuery } from '@apollo/client';
@@ -20,20 +18,19 @@ const AppNavbar = () => {
 
   const { data: userData } = useQuery(GET_ME);
   const user = userData?.me || {};
-  console.log(user);
 
   return (
     <>
       <Navbar style={{ backgroundColor: '#283845', borderRadius: 10, margin: 10, color: 'white' }}>
         <Container fluid>
           <Navbar.Brand as={Link} to='/' style={{ marginLeft: '2%' }}>
-            <img src={logo} style={{ height: 50, width: 150 }}></img>
+          {/* eslint-disable-next-line */}
+            <img src={logo} style={{ height: 50, width: 150 }} atl=''></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto' style={{ marginRight: '2%' }}>
               {Auth.loggedIn() ? (
-                <>
                 <Nav.Link as={Link} to='/selling'>
                   <span 
                     className="Nav-style"
@@ -43,13 +40,10 @@ const AppNavbar = () => {
                     {isShownSearch ? <span style={{ color: '#F2D492'}} >Selling</span> : <span>Selling</span>}
                   </span>
                 </Nav.Link>
-                </>
                 ) : (
-                  <span></span>
+                  null
                 )}
-              {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
-                <>
                   <NavDropdown 
                     title={user.username} 
                     id="nav-dropdown" 
@@ -58,9 +52,8 @@ const AppNavbar = () => {
                     <NavDropdown.Item as={Link} to='/profile'>Profile</NavDropdown.Item>
                     <NavDropdown.Item onClick={Auth.logout}>Log Out</NavDropdown.Item>
                   </NavDropdown>
-                </>
               ) : (
-                <Nav.Link as={Link} to='/loginsignup'>
+                <Nav.Link as={Link} to='/login'>
                   <span 
                     className="Nav-style"
                     onMouseEnter={() => setIsShownLogin(true)} 

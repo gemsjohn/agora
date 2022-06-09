@@ -25,6 +25,10 @@ const listingSchema = new Schema(
       type: String, 
       required: true
     },
+    contact: {
+      type: String, 
+      required: true
+    },
     media: [
       {
         type: String,

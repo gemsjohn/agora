@@ -47,7 +47,6 @@ const LoginForm = () => {
 
   return (
     <>
-      {/* Complete Log In Form: Email, Password, Submit Button */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
           <Form.Label htmlFor='email'>Email <span style={{color: 'red' }}>*</span></Form.Label>

@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import { Form, Button, Alert, Container, Row, InputGroup, OverlayTrigger, Tooltip} from 'react-bootstrap';
 import { IKContext, IKUpload } from 'imagekitio-react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_LISTING } from '../utils/mutations';
 import Auth from '../utils/auth';
@@ -116,6 +116,7 @@ function NewListingFunc() {
                 </Tooltip>
             }
         >
+        {/* eslint-disable-next-line */}
         <a onClick={increment} 
             style={{ 
                 backgroundColor: '#283845', 
@@ -128,6 +129,7 @@ function NewListingFunc() {
             }}
             onMouseEnter={() => setIsShown(true)} 
             onMouseLeave={() => setIsShown(false)}
+            href=""
         >
             {isShown ? <span style={{ color: '#F2D492'}} >Render</span> : <span>Render</span>}
         </a>
@@ -138,7 +140,7 @@ function NewListingFunc() {
     // ************ [START: ADD LISTING] ************
     const history = useHistory();
     // set initial form state
-    const [listingFormData, setListingFormData] = useState({ title: '',  price: '', description: '', category: '', condition: '' });
+    const [listingFormData, setListingFormData] = useState({ title: '',  price: '', description: '', category: '', condition: '', contact: '' });
     const [addListing, { error }] = useMutation(ADD_LISTING);
     // set state for form validation
     const [validated] = useState(false);
@@ -298,17 +300,29 @@ function NewListingFunc() {
                         <Form.Control.Feedback type='invalid'>Condition is required!</Form.Control.Feedback>
                         </Form.Group>
 
+                        <Form.Group style={{ width: '70vw', textAlign: 'left' }}>
+                        <InputGroup className="mb-3">
+                            <InputGroup.Text id="basic-addon1">Contact</InputGroup.Text>
+                            <Form.Control
+                                type='text'
+                                placeholder='Contact?'
+                                name='contact'
+                                onChange={handleInputChange}
+                                value={listingFormData.contact}
+                                required
+                            />
+                        </InputGroup>
+                        <Form.Control.Feedback type='invalid'>Contact is required!</Form.Control.Feedback>
+                        </Form.Group>
+
                         <Button
-                        disabled={!(listingFormData.title && listingFormData.price && listingFormData.description && listingFormData.category && listingFormData.condition)}
+                        disabled={!(listingFormData.title && listingFormData.price && listingFormData.description && listingFormData.category && listingFormData.condition && listingFormData.contact)}
                         type='submit'
                         variant='success'
                         style={{ width: '70vw', marginBottom: '20vh' }}
                         >
                         Submit
                         </Button>
-                        {/* <Row>
-                            <Button style={{ width: '70vw', marginBottom: '20vh' }} as={Link} to="/complete">Test</Button>
-                        </Row> */}
                     </Form>
                     {error && <div>Signup failed</div>}
                 </div>     

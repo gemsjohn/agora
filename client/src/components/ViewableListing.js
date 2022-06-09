@@ -5,16 +5,16 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-const commonButtonStyles = {
-    backgroundColor: '#283845', 
-    borderRadius: 10, 
-    margin: 10, 
-    height: '5vh', 
-    width: '20vw', 
-    color: 'white', 
-    fontSize: 15, 
-    paddingTop: '1.5vh'
-}
+// const commonButtonStyles = {
+//     backgroundColor: '#283845', 
+//     borderRadius: 10, 
+//     margin: 10, 
+//     height: '5vh', 
+//     width: '20vw', 
+//     color: 'white', 
+//     fontSize: 15, 
+//     paddingTop: '1.5vh'
+// }
 
 let imageArray1 = [];
 let imageArray2 = [];
@@ -23,25 +23,11 @@ let imageArray2 = [];
 function ViewableListing() {
     // const [isShownLogin, setIsShownLogin] = useState(false);
     // const [isShownSignup, setIsShownSignup] = useState(false);
-    let denominator;
-    if (window.innerWidth <= 480) {
-        denominator = 5
-    } else if (window.innerWidth >= 481 && window.innerWidth <= 768) {
-        denominator = 7
-    } else if (window.innerWidth >= 769 && window.innerWidth <= 1024) {
-        denominator = 15
-    } else if (window.innerWidth >= 1025 && window.innerWidth <= 1200) {
-        denominator = 22
-    }else if (window.innerWidth >= 1201) {
-        denominator = 35
-    }
-    function getBaseLog(x, y) {
-        return Math.log(y) / Math.log(x);
-    }
-    const state = {
-        
-        width: (window.innerWidth / denominator)
-    };
+    // let denominator;
+    let slopeEq = -(7/300) * window.innerWidth + (245/3);
+    let denominator = window.innerWidth/slopeEq;
+
+    const state = {width: (window.innerWidth/denominator)};
     
     const media = localStorage.getItem('listingMedia');
     const title = localStorage.getItem('listingTitle');
@@ -49,6 +35,7 @@ function ViewableListing() {
     const description = localStorage.getItem('listingDescription');
     const category = localStorage.getItem('listingCategory');
     const condition = localStorage.getItem('listingCondition');
+    const contact= localStorage.getItem('listingContact');
 
     imageArray1 = JSON.parse(media);
 
@@ -64,7 +51,8 @@ function ViewableListing() {
         };
         for (let i = 0; i < imageArray1.length; i++) {
             imageArray2[i] =
-                <div>
+                <div key={i}>
+                    {/* eslint-disable-next-line */}
                     <img src={imageArray1[i]} style={{ height: 'auto', width: state.width + "vw"}}/>
                 </div>
         }
@@ -104,6 +92,10 @@ function ViewableListing() {
                 <tr>
                 <td>Condition</td>
                 <td>{condition}</td>
+                </tr>
+                <tr>
+                <td>Contact</td>
+                <td>{contact}</td>
                 </tr>
             </tbody>
             </Table>

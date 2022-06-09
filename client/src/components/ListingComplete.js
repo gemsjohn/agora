@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Nav, Row } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const commonButtonStyles = {
@@ -10,7 +10,8 @@ const commonButtonStyles = {
     width: '20vw', 
     color: 'white', 
     fontSize: 15, 
-    paddingTop: '1.5vh'
+    paddingTop: '1.5vh',
+    textDecoration: 'none'
 }
 
 function ListingComplete() {
@@ -29,7 +30,7 @@ function ListingComplete() {
                         onMouseEnter={() => setIsShownLogin(true)} 
                         onMouseLeave={() => setIsShownLogin(false)}
                     >
-                        {isShownLogin ? <span style={{ color: '#F2D492'}} >Retrun Home</span> : <span>Retrun Home</span>}
+                        {isShownLogin ? <span style={{ color: '#F2D492'}} >Return Home</span> : <span>Return Home</span>}
                     </Link>
                     <Link 
                         style={{ ...commonButtonStyles }} 
